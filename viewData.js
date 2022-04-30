@@ -1,4 +1,4 @@
-module.exports = [
+module.exports.viewData = [
     {
         information : 
         {
@@ -71,61 +71,61 @@ module.exports = [
                     binDetails: [
                         {
                             address: 5002,
-                            length: 1
+                            lengthe: 1
                         },
                         {
                             address: 5007,
-                            length: 1
+                            lengthe: 1
                         },
                         {
                             address: 5010,
-                            length: 6
+                            lengthe: 6
                         },
                         {
                             address: 5018,
-                            length: 6
+                            lengthe: 6
                         },
                         {
                             address: 5034,
-                            length: 4
+                            lengthe: 4
                         },
                         {
                             address: 5044,
-                            length: 1
+                            lengthe: 1
                         },
                         {
                             address: 5112,
-                            length: 1
+                            lengthe: 1
                         },
                         {
                             address: 5114,
-                            length: 10
+                            lengthe: 10
                         },
                         {
                             address: 5129,
-                            length: 8
+                            lengthe: 8
                         },
                         {
                             address: 5003,
-                            length: 4
+                            lengthe: 4
                         },
                         {
                             address: 5016,
-                            length: 2
+                            lengthe: 2
                         },
                         {
                             address: 5030,
-                            length: 2
+                            lengthe: 2
                         },
                         {
                             address: 7012,
-                            length: 24
+                            lengthe: 24
                         },
                     ]
                 }
             ]
         }
 
-}
+    }
 ]
 

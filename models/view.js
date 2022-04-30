@@ -9,9 +9,7 @@ const DashBoard = new mongoose.Schema({
         configuration: {
             
             timestamp: { 
-                Date: Date, 
-                default: Date.now,
-                
+                Date: Date
             } 
         },
         plantId: { type: Number },
@@ -78,7 +76,7 @@ const DashBoard = new mongoose.Schema({
                         length: Number
                     }
                 ]
-            }
+            },
         ]
     }
 

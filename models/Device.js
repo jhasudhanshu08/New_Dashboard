@@ -10,6 +10,7 @@ const Device = new mongoose.Schema({
     description: { type: String },
 
     registerProfile: { 
+        functionCode: { type: Number },
         length: { type: Number },
         reg16bit: { type: Number },
         reg32bit: { type: Number },
