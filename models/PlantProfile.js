@@ -7,4 +7,4 @@ const PlantProfile = new mongoose.Schema({
    
 });
 
-exports.PlantProfile = mongoose.model('PlantProfile', PlantProfile);
+module.exports = mongoose.model('PlantProfile', PlantProfile);

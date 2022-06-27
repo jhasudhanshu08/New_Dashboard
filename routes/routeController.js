@@ -1,84 +1,50 @@
 // const express = require("express");
 // const mongoose = require("mongoose");
+// const { response } = require("express");
+const express =require("express");
+const router = express.Router();
+const RouterService = require("./routerService");
 
-const DashBoard = require("../models/view");
-const PlantProfile = require("../models/PlantProfile");
-const Device = require("../models/Device");
+// router.use("/findserialno", findSerialNo = async (req, res, next) => {
+//     // console.log(req.body);
+    
+//     const { serialNo } = req.body;
+//     DashBoard.findOne({
+//         'information.serialNo': serialNo
+//     })
+//     .then(data => {
+//         // console.log(data.information.serialNo);
+//         return res.send(data.information.serialNo);
+//     })
+//     .catch(err =>{
+//         return res.status(401).json({
+//             message: "View Details of Particular Logger is Failed !!"
+//         });
+//     });
 
-exports.findSerialNo = async (req, res, next) => {
-    DashBoard.find({
-        serialNo: req.query.information.serialNo,
+// })
+
+router.use("/senddatatouser", sendDataToUser = async (req, res, next) => {
+    // console.log(req.query.information.serialNo);
+    RouterService.sendDataToUserService(req.body.serialNo)
+    
+    .then((response)=>{
+        // console.log(response)
+        if(!response.status){
+            throw new Error(response.message); 
+        }     
+        res.status(200).json({
+            message: true,
+            response: response.response
+        })
     })
-    .then(data => {
-        return res.send(data.information.serialNo);
-    })
-    .catch(err =>{
-        return res.status(401).json({
-            message: "View Details of Particular Logger is Failed !!"
+    .catch((err)=>{
+        console.log(err);
+        res.status(401).json({
+            status: false,
+            message: err.message
         });
     });
+})
 
-}
-
-exports.sendDataToUser = async (req, res, next) => {
-    DashBoard.findOne({
-        serialNo: req.query.information.serialNo
-    })
-    .then(data => {
-        if(!data) {
-            throw new Error("Data is undefined or not fetching !!")
-        }
-        else {
-
-            Device.find({ 
-                deviceType: req.query.deviceType
-            })
-            .then(deviceData => {
-                if(!deviceData) {
-                    throw new Error("Device data is undefined or not fetching !!")
-                }
-                else {
-                    for(i=0; i<=data.deviceConnected.details.length; i++) {
-                        if(data.deviceConnected.details.deviceType === Device.deviceType && data.deviceConnected.details.binCount === Device.registerProfile.packet.length) {
-                                
-                            PlantProfile.findOne({
-                                plantId: req.query.plantId
-                            })
-                            .then(plantdata => {
-                                if(!plantdata) {
-                                    return res.send({
-                                        plantName: null,
-                                        result: { data, Device }
-                                    })
-                                }
-                                else {
-                                    return res.send({
-                                        plantName: plantdata.plantName,
-                                        result: { data, Device }
-                                    })
-                                }
-                            })
-                            .catch(err =>{
-                                return res.status(401).json({
-                                    message: "Plant Details is Failed !!"
-                                });
-                            });
-                                    
-                        } 
-                    }
-                }
-            })
-            .catch(err =>{
-                return res.status(401).json({
-                    message: "Device Details is Failed !!"
-                });
-            });
-            
-        } 
-    })
-    .catch(err =>{
-        return res.status(401).json({
-            message: "View Details of Particular Logger is Failed !!"
-        });
-    });
-}
+module.exports = router;

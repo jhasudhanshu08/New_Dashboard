@@ -40,21 +40,21 @@ const DashBoard = new mongoose.Schema({
     },
 
     modbus: 
-    [{
+    {
         baudRate: Number,
         parity: String,
         pollRate: Number,
         timeout: Number
-    }],
+    },
 
     tracker: 
-    [{
+    {
         lastUploadYear: Number,
         lastUploadMonth: Number,
         lastUploadDay: Number,
         lastUploadHour: Number,
         lastUploadCount: Number
-    }],
+    },
 
     deviceConnected: 
     {

@@ -2,11 +2,12 @@ const mongoose = require("mongoose");
 
 const Device = new mongoose.Schema({
 
+    
     category: { type: String },
     manufacture: { type: String },
     model: { type: String },
     pairingVersion: { type: String },
-    deviceType: { type: String },
+    deviceType: { type: Number },
     description: { type: String },
 
     registerProfile: { 
@@ -19,15 +20,18 @@ const Device = new mongoose.Schema({
             parameter: { type: String },
             address: { type: Number },
             size: { type: String },
-            scaleFactor: { type: Number }
+            scaleFactor: { type: Number },
+            _id: false
         }],
         packet: [{
             address: { type: Number },
-            length: { type: Number }
+            length: { type: Number },
+            _id: false
         }]
 
-     }
-
+     },
+    
+    
 })
 
 module.exports = mongoose.model("Device", Device);
